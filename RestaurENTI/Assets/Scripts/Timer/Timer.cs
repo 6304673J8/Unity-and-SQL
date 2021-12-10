@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public float timeRemaining = 0;
     public Text timerText;
     public bool timerIsRunning = false;
+    public float timeRemaining = 0;
 
     private void Start()
     {
@@ -26,10 +26,15 @@ public class Timer : MonoBehaviour
             }
             else
             {
+                timeRemaining += Time.deltaTime;
+                DisplayTime(timeRemaining);
+            }
+            /*else
+            {
                 Debug.Log("Lentorro!");
                 timeRemaining = 0;
                 timerIsRunning = false;
-            }
+            }*/
         }
     }
     

@@ -5,15 +5,21 @@ using UnityEngine;
 using Mono.Data.Sqlite;
 using System.Data;
 using System;
-
+using UnityEngine.UI;
 
 public class testDB : MonoBehaviour
 {
+    public Text recipeName;
+    int randomizer;
+
+    private void Awake()
+    {
+        randomizer = UnityEngine.Random.Range(1, 7);
+    }
     // Start is called before the first frame update
     void Start()
     {
         string conn = "URI=file:" + Application.dataPath + "/database.db"; //Path to database.
-
         Debug.Log(conn);
         IDbConnection dbconn;
         dbconn = (IDbConnection)new SqliteConnection(conn);
@@ -23,7 +29,7 @@ public class testDB : MonoBehaviour
         string  sqlQuery =  "SELECT recipes.recipe, recipes.image, ingredients.ingredient, ingredients.image FROM recipes ";
                 sqlQuery += "LEFT JOIN recipes_ingredients ON recipes.id_recipe=recipes_ingredients.id_recipe ";
                 sqlQuery += "LEFT JOIN ingredients ON ingredients.id_ingredient=recipes_ingredients.id_ingredient ";
-                sqlQuery += "WHERE recipes.id_recipe=3";
+                sqlQuery += "WHERE recipes.id_recipe=" + randomizer;
 
         //To Test in DB Browser for SQLite
         Debug.Log(sqlQuery);
@@ -38,8 +44,9 @@ public class testDB : MonoBehaviour
             {
                 string recipe = reader.GetString(0);
                 string recipe_image = reader.GetString(1);
-
+                
                 Debug.Log("RECETA: = " + recipe + " (" + recipe_image + ")");
+                recipeName.text = recipe;
             }
 
             counter++;
@@ -48,7 +55,6 @@ public class testDB : MonoBehaviour
          
             Debug.Log(counter + ".- " + ingredient);
         }
-
         reader.Close();
         reader = null;
         dbcmd.Dispose();
