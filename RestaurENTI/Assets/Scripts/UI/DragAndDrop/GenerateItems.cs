@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GenerateItems : MonoBehaviour
 {
     [SerializeField] GameObject Item;
-    [SerializeField] int count;
     [SerializeField] Transform posToInstantiate;
+    
+    [SerializeField] testDB database;
+
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < count; i++)
+        List<Ingredient> ingredients = new List<Ingredient>();
+
+        ingredients = database.GetIngredients();
+        for (int i = 0; i < ingredients.Count; i++)
         {
-            Instantiate(Item, posToInstantiate);
+            GameObject item = Instantiate(Item, posToInstantiate);
+            Text text = item.GetComponentInChildren<Text>();
+            text.text = ingredients[i].ingredient;
         }
     }
 }
