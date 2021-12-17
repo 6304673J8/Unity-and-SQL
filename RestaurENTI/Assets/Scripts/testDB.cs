@@ -14,6 +14,7 @@ public class testDB : MonoBehaviour
 
     public List<String> ingredients = new List<string>();
     public List<String> recipes = new List<string>();
+    public List<String> recipe_ingredients = new List<string>();
 
     string conn;
     private void Awake()

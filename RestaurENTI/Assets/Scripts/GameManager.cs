@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] Text timeText;
     [SerializeField] testDB database;
-    [SerializeField] Text requiredText;
+    //[SerializeField] Text requiredText;
 
     // Start is called before the first frame update
     void Start()

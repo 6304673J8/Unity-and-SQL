@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CheckThis : MonoBehaviour
+public class GenerateRecipe : MonoBehaviour
 {
-    [SerializeField] Text text;
+    [SerializeField] Text recipeName;
     [SerializeField] testDB database;
-    // Start is called before the first frame update
+
     void Start()
     {
-        text.text = DisplayRandomRecipe();
+        recipeName.text = DisplayRandomRecipe();
     }
 
     public string DisplayRandomRecipe()
