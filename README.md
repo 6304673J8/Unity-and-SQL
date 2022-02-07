@@ -1,2 +1,2 @@
 # Unity-and-SQL
-Learning Project using SQLite as Main Database 
+Advanced Unity Project - Using SQLite as Main Database In Order To Create A Restaurant Game. 
