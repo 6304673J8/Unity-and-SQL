@@ -6,13 +6,14 @@ using UnityEngine.EventSystems;
 public class DropZone : MonoBehaviour, IDropHandler
 {
     public Transform toParent;
+    private bool b;
     public void OnDrop(PointerEventData eventData)
     {
 
         if (eventData != null)
         {
             DragAndDrop d = eventData.pointerDrag.GetComponent<DragAndDrop>();
-            bool b = d.isIngredient;
+            b = d.isIngredient;
             if (b)
             {
                 Instantiate(d, toParent);
@@ -23,17 +24,5 @@ public class DropZone : MonoBehaviour, IDropHandler
             }
 
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

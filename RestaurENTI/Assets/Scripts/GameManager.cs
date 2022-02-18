@@ -9,16 +9,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] bool timerIsRunning = false;
     
     [SerializeField] Text timeText;
-    [SerializeField] testDB database;
-    //[SerializeField] Text requiredText;
+    [SerializeField] RestaurentiDB database;
+
+    public bool victory;
+    AudioSource audioData;
 
     // Start is called before the first frame update
     void Start()
     {
+        victory = false;
         timerIsRunning = true;
+        audioData = GetComponent<AudioSource>();
+        audioData.Play(0);
     }
     void Update()
     {
+        CheckVictory();
         if (timerIsRunning)
         {
             if (timeRemaining < 59)
@@ -48,5 +54,19 @@ public class GameManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    void CheckVictory()
+    {
+        if (victory != false)
+        {
+            audioData.Pause();
+            timerIsRunning = false;
+        }
+        else if (victory == false)
+        {
+            timerIsRunning = true;
+            audioData.UnPause();
+        }
     }
 }

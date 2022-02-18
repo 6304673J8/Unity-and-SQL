@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class GenerateItems : MonoBehaviour
 {
-    [SerializeField] GameObject Item;
+    [SerializeField] GameObject Ingredient;
     [SerializeField] Transform posToInstantiate;
     
-    [SerializeField] testDB database;
+    [SerializeField] RestaurentiDB database;
+
+    public int id;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +20,12 @@ public class GenerateItems : MonoBehaviour
         ingredients = database.GetIngredients();
         for (int i = 0; i < ingredients.Count; i++)
         {
-            GameObject item = Instantiate(Item, posToInstantiate);
-            Text text = item.GetComponentInChildren<Text>();
-            text.text = ingredients[i].ingredient;
+            GameObject ingredient = Instantiate(Ingredient, posToInstantiate);
+            Text text = ingredient.GetComponentInChildren<Text>();
+
+            id = ingredients[i].id_ingredient;
+
+            text.text = id + (". ")+ ingredients[i].ingredient;
         }
     }
 }

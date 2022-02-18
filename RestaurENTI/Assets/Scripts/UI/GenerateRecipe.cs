@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class GenerateRecipe : MonoBehaviour
 {
     [SerializeField] Text recipeName;
-    [SerializeField] testDB database;
+    [SerializeField] RestaurentiDB database;
 
-    void Start()
+    private void Awake()
     {
         recipeName.text = DisplayRandomRecipe();
     }
